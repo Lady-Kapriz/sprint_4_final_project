@@ -8,10 +8,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.yandex.praktikum.pageObject.AboutRent;
+import ru.yandex.praktikum.pageObject.AboutScooter;
 import ru.yandex.praktikum.pageObject.HomePage;
 import ru.yandex.praktikum.pageObject.PopUpWindow;
-import ru.yandex.praktikum.pageObject.RenterAboutPage;
+import ru.yandex.praktikum.pageObject.AboutRenter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +19,7 @@ import static ru.yandex.praktikum.pageObject.constants.RentDurationConstants.*;
 import static ru.yandex.praktikum.pageObject.constants.ScooterColours.*;
 
 @RunWith(Parameterized.class)
-public class OrderTest {
+public class OrderCreateTest {
     private WebDriver driver;
     private final String site = "https://qa-scooter.praktikum-services.ru/";
     private final String name;
@@ -33,8 +33,8 @@ public class OrderTest {
     private final String comment;
     private final String expectedHeader = "Заказ оформлен";
 
-    public OrderTest(String name, String surname, String address, int stateMetroNumber, String telephoneNumber,
-                     String date, String duration, Enum colour, String comment) {
+    public OrderCreateTest(String name, String surname, String address, int stateMetroNumber, String telephoneNumber,
+                           String date, String duration, Enum colour, String comment) {
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -49,7 +49,7 @@ public class OrderTest {
     @Parameterized.Parameters
     public static Object[][] getParameters() {
         return new Object[][]{
-                {"Имя Один", "Фамилия", "Адрес 1", 5, "79991111111", "28.05.2023", SIX_DAYS, GREY, "comments one"},
+                {"Имя Один", "Фамилия", "Адрес 1", 123, "79991111111", "28.05.2023", SIX_DAYS, GREY, "comments one"},
                 {"Имя Два", "Фамилия", "Адрес 2", 7, "79992222222", "28.05.2023", FIVE_DAYS, BLACK, "comments two"},
                 {"Имя Три", "Фамилия", "Адрес 3", 10, "79993333333", "28.05.2023", ONE_DAY, BLACK, "comments three"},
         };
@@ -73,7 +73,7 @@ public class OrderTest {
                 .waitForLoadHomePage()
                 .clickUpOrderButton();
 
-        new RenterAboutPage(driver)
+        new AboutRenter(driver)
                 .waitForLoadOrderPage()
                 .inputName(name)
                 .inputSurname(surname)
@@ -82,7 +82,7 @@ public class OrderTest {
                 .inputTelephone(telephoneNumber)
                 .clickNextButton();
 
-        new AboutRent(driver)
+        new AboutScooter(driver)
                 .waitAboutRentHeader()
                 .inputDate(date)
                 .inputDuration(duration)
@@ -103,7 +103,7 @@ public class OrderTest {
                 .scrollToDownButtonOrder()
                 .clickDownOrderButton();
 
-        new RenterAboutPage(driver)
+        new AboutRenter(driver)
                 .waitForLoadOrderPage()
                 .inputName(name)
                 .inputSurname(surname)
@@ -112,7 +112,7 @@ public class OrderTest {
                 .inputTelephone(telephoneNumber)
                 .clickNextButton();
 
-        new AboutRent(driver)
+        new AboutScooter(driver)
                 .waitAboutRentHeader()
                 .inputDate(date)
                 .inputDuration(duration)

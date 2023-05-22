@@ -14,12 +14,15 @@ public class HomePage {
     private final By upOrderButton = By.className("Button_Button__ra12g");
     private final By downOrderButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
     private final By questionsHeader = By.className("Home_FourPart__1uthg");
+    private final By orderState = By.xpath(".//button[text()='Статус заказа']");
+    private final By numberOrder = By.xpath(".//input[@placeholder='Введите номер заказа']");
+    private final By buttonGo = By.xpath(".//button[text()='Go!']");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    //метод ожидания прогрузки данных профиля
+    //метод ожидания загрузки главной страницы
     public HomePage waitForLoadHomePage() {
         new WebDriverWait(driver, Duration.ofSeconds(15)).until(driver -> (driver.findElement(homeHeader).getText() != null
                 && !driver.findElement(homeHeader).getText().isEmpty()
@@ -58,7 +61,27 @@ public class HomePage {
 
     public HomePage clickQuestion(By question) {
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(question)).click();
+                .until(ExpectedConditions.elementToBeClickable(question))
+                .click();
+        return this;
+    }
+
+    public HomePage clickOrderState() {
+        driver.findElement(orderState).click();
+        return this;
+    }
+
+    public HomePage inputOrderNumber(String number) {
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.elementToBeClickable(numberOrder))
+                .sendKeys(number);
+        return this;
+    }
+
+    public HomePage clickGo() {
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.elementToBeClickable(buttonGo))
+                .click();
         return this;
     }
 }
