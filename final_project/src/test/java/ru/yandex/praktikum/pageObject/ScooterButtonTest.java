@@ -1,4 +1,4 @@
-package ru.yandex.praktikum.pajeObject;
+package ru.yandex.praktikum.pageObject;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -7,10 +7,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.yandex.praktikum.pageObject.AboutRenter;
-import ru.yandex.praktikum.pageObject.AboutScooter;
-import ru.yandex.praktikum.pageObject.HomePage;
-import ru.yandex.praktikum.pageObject.OrderStatus;
 
 import java.time.Duration;
 

@@ -1,4 +1,4 @@
-package ru.yandex.praktikum.pajeObject;
+package ru.yandex.praktikum.pageObject;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -7,11 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.yandex.praktikum.pageObject.AboutScooter;
-import ru.yandex.praktikum.pageObject.HomePage;
-import ru.yandex.praktikum.pageObject.PopUpWindow;
-import ru.yandex.praktikum.pageObject.AboutRenter;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -57,8 +53,8 @@ public class OrderCreateTest {
 
     @Before
     public void startUp() {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.get(site);
     }
 

@@ -17,6 +17,7 @@ public class HomePage {
     private final By orderState = By.xpath(".//button[text()='Статус заказа']");
     private final By numberOrder = By.xpath(".//input[@placeholder='Введите номер заказа']");
     private final By buttonGo = By.xpath(".//button[text()='Go!']");
+    private final By yandexButton = By.xpath(".//*[@alt='Yandex']");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -83,5 +84,9 @@ public class HomePage {
                 .until(ExpectedConditions.elementToBeClickable(buttonGo))
                 .click();
         return this;
+    }
+
+    public void clickYandexButton() {
+        driver.findElement(yandexButton).click();
     }
 }
