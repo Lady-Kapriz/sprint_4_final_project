@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static ru.yandex.praktikum.pageObject.constants.CreateOrderButton.DOWN_BUTTON;
+import static ru.yandex.praktikum.pageObject.constants.CreateOrderButton.UP_BUTTON;
+
 public class HomePage {
     WebDriver driver;
     private final By homeHeader = By.className("Home_Header__iJKdX");
@@ -45,7 +48,7 @@ public class HomePage {
     }
 
     //метод прокрутки ко второй кнопке "Заказать"
-    public HomePage scrollToDownButtonOrder() {
+    public HomePage scrollToDownOrderButton() {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(downOrderButton));
         return this;
     }
@@ -58,6 +61,15 @@ public class HomePage {
     public HomePage clickDownOrderButton() {
         driver.findElement(downOrderButton).click();
         return this;
+    }
+
+    public void clickCreateOrderButton(Enum button) {
+        if (button.equals(UP_BUTTON)) {
+            clickUpOrderButton();
+        } else if (button.equals(DOWN_BUTTON)) {
+            scrollToDownOrderButton();
+            clickDownOrderButton();
+        }
     }
 
     public HomePage clickQuestion(By question) {
